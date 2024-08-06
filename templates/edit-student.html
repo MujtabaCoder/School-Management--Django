@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% block title %}Edit Student{% endblock %}	
+{% block page_title %}EditStudent{% endblock %}
+{% block content %}
+					<!-- Page Header -->
+					{% comment %} <div class="page-header">
+						<div class="row align-items-center">
+							<div class="col-sm-12">
+								<div class="page-sub-header">
+									<h3 class="page-title">Edit Students</h3>
+									<ul class="breadcrumb">
+										<li class="breadcrumb-item"><a href="students.html">Student</a></li>
+										<li class="breadcrumb-item active">Edit Students</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header --> {% endcomment %}
+				
+					<div class="row">
+						<div class="col-sm-12">
+						
+							<div class="card comman-shadow">
+								<div class="card-body"> 
+									
+									<form id="updateForm" method="POST" action="update_student" >
+										{% csrf_token %}
+										<div class="row">
+											<div class="col-12">
+												<h5 class="form-title student-info">Student Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+											</div>
+											<div class="col-12 col-sm-4">  
+												<div class="form-group local-forms">
+													<label >First Name <span class="login-danger">*</span></label>
+													<input class="form-control" type="text" value="{{ student.first_name }}"  name="first_name" >
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Last Name <span class="login-danger">*</span></label>
+													<input class="form-control" type="text" value="{{ student.last_name  }}"  name="last_name">
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Gender <span class="login-danger">*</span></label>
+													<select class="form-control select" name="gender">
+														<option>{{ student.gender }}</option>
+														<option value="">Select Gender</option>
+														<option value="Female">Female</option>
+														<option value="Male">Male</option>
+														<option value="Others">Others</option>
+													  </select>
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms calendar-icon">
+													<label >Date Of Birth  <span class="login-danger">*</span></label>
+													<input class="form-control datetimepicker" type="text"  placeholder="DD-MM-YYYY" value="{{ student.date_of_birth}}" name="date_of_birth" >
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Roll </label>
+													<input class="form-control" type="text" value="{{ student.roll }}" name="roll" >
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Blood Group <span class="login-danger">*</span></label>
+														
+													<select class="form-control select" name="blood_group"> 
+														<option>{{ student.blood_group }} </option>
+														<option value="">Please Select Group </option>
+														<option value="B+">B+</option>
+														<option value="A+">A+</option>
+														<option value="O+">O+</option>
+													  </select>
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Religion <span class="login-danger">*</span></label>
+													<select class="form-control select" name="religion" >
+														<option>{{ student.religion  }}  </option>
+														<option value="">Please Select Religion  </option>
+														<option value="Hindu">Hindu</option>
+														<option value="Christian">Christian</option>
+														<option value="Others">Others</option>
+													  </select>
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >E-Mail <span class="login-danger">*</span></label>
+													<input class="form-control" type="text" value="{{ student.email }}" name="email"  >
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Class <span class="login-danger">*</span></label>
+													<select class="form-control select" name="student_class_id" >
+														<option>{{ student.student_class_id }}</option>
+														<option value="">Please Select Class  </option>
+														<option value="12">12</option>
+														<option value="11">11</option>
+														<option value="10">10</option>
+													  </select>
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Section <span class="login-danger">*</span></label>
+													<select class="form-control select" name="section">
+														<option>{{ student.section  }}</option>
+														<option value="">Please Select Section   </option>
+														<option value="B">B</option>
+														<option value="A">A</option>
+														<option value="C">C</option>
+													  </select>
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Admission ID </label>
+													<input class="form-control" type="text" value="{{ student.admission_id}}" name="admission_id" >
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Phone </label>
+													<input class="form-control" type="text" value="{{ student.phone }}" name="phone" >
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group students-up-files">
+													<label>Upload Student Photo (150px X 150px)</label>
+													<div class="uplod">
+														<label class="file-upload image-upbtn mb-0">
+															Choose File <input type="file">
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Student id </label>
+													<input class="form-control" type="text" value="{{ student.id }}" name="student_id">
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="student-submit">
+													<button type="submit" class="btn btn-primary" id="updateButton">Submit</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>							
+						</div>					
+					</div>					
+				</div>				
+			</div>
+			<!-- /Page Wrapper -->
+			
+        </div>
+		<!-- /Main Wrapper -->
+		{% comment %} <!-- Add this script tag in the head of your HTML file -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+		<script>
+			$(document).ready(function() {
+				$("#updateButton").click(function() {
+					// Get form data
+					var formData = $("#updateForm").serialize();
+			
+					// Send AJAX request
+					$.ajax({
+						type: "POST",
+						url: "{% url 'update_student' %}",
+						data: formData,
+						success: function(response) {
+							// Handle success response
+							console.log(""response);
+						},
+						error: function(error) {
+							// Handle error response
+							console.log(error);
+						}
+					});
+				});
+			});
+		</script>	
+		 {% endcomment %}
+{% endblock %}	

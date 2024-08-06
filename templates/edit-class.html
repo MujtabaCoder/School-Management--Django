@@ -1,0 +1,91 @@
+
+{% extends 'base.html' %}
+{% block title %}Add Class{% endblock %}	
+{% block page_title %}Add Class{% endblock %}
+{% block content %}
+
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+
+<!-- Include jQuery Validation Plugin -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+<div class="card comman-shadow">
+    <div class="card-body">
+        <form id="addclass" action="update_class"  method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="form-title student-info">Student Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+                </div>
+                <div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Class <span class="login-danger">*</span></label>
+						<select class="form-control select" name="student_class" readonly>
+                            <option value="{{  student_classes.student_class}}" selected>{{  student_classes.student_class}}</option>
+                            
+                        </select>
+                        
+                        
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Fees </label>
+						<input class="form-control" type="number" placeholder="Enter fees"  name="fees" value="{{ student_classes.fees }}" >
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="student-submit">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+				
+            </div>
+        </form>
+    </div>
+</div>
+
+{% comment %} <script>
+    $(document).ready(function () {
+		$("#addclass").validate({
+			// Other options and rules can be added here
+			submitHandler: function (form) {
+				var formData = $(form).serialize();
+	
+				$.ajax({
+					type: "POST",
+					url: "create_class",
+					data: formData,
+					success: function (data) {
+						// Display SweetAlert for success
+						Swal.fire({
+							icon: "success",
+							title: "Success",
+							text: "Successfully submitted class!",
+						});
+	
+						// Additional actions after success, if needed
+					},
+					error: function (error) {
+						// Display SweetAlert for error
+						Swal.fire({
+							icon: "error",
+							title: "Error",
+							text: error.responseText,
+						});
+	
+						// Additional actions after error, if needed
+					},
+				});
+				return false; // Prevent the default form submission
+			},
+		});
+	});
+	
+</script> {% endcomment %}
+
+{% endblock %}

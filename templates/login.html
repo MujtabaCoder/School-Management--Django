@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>Preskool - Login</title>
+		
+		{% include 'allCSS.html' %}
+		
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    </head>
+    <body>
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper login-body">
+            <div class="login-wrapper">
+            	<div class="container">
+                	<div class="loginbox">
+                    	<div class="login-left">
+							<img class="img-fluid" src="{% static 'assets/img/login.png' %}"  alt="Logo">
+                        </div>
+                        <div class="login-right">
+							<div class="login-right-wrap">
+								<h1>Welcome to Preskool</h1>
+								<p class="account-subtitle">Need an account?  <a href="register.html">Sign Up</a></p>
+								<h2>Sign in</h2>
+								<!-- Form -->
+								{% comment %} action="/Administartion/user_login/" method="POST" {% endcomment %}
+								<form id="login-form" action="user_login" method="POST">
+									{% csrf_token %}
+									<div class="form-group">
+										<label >Username <span class="login-danger">*</span></label>
+										<input class="form-control" type="text" name="username" >
+										<span class="profile-views"><i class="fas fa-user-circle"></i></span>
+									</div>
+									<div class="form-group">
+										<label >Password <span class="login-danger">*</span></label>
+										<input class="form-control pass-input" type="password" name="password" >
+										<span class="profile-views feather-eye toggle-password"></span>
+									</div>
+									{% comment %} <div class="form-group">
+										<label >Role<span class="login-danger">*</span></label>
+										<input class="form-control pass-input" type="text" name="role" >
+										<span class="profile-views feather-eye "></span>
+									</div> {% endcomment %}
+									<div class="forgotpass">
+										<div class="remember-me">
+											<label class="custom_check mr-2 mb-0 d-inline-flex remember-me"> Remember me
+											<input type="checkbox" name="radio">
+											<span class="checkmark"></span>
+											</label>
+										</div>
+										<a href="forgot-password.html">Forgot Password?</a>
+									</div>
+									<div class="form-group">
+										<button class="btn btn-primary btn-block" type="submit">Login</button>
+									</div>
+								</form>
+								<!-- /Form -->
+								
+								<div class="login-or">
+									<span class="or-line"></span>
+									<span class="span-or">or</span>
+								</div>
+								  
+								<!-- Social Login -->
+								<div class="social-login">
+									<a href="#" ><i class="fab fa-google-plus-g"></i></a>
+									<a href="#" ><i class="fab fa-facebook-f"></i></a>
+									<a href="#" ><i class="fab fa-twitter"></i></a>
+									<a href="#" ><i class="fab fa-linkedin-in"></i></a>
+								</div>
+								<!-- /Social Login -->
+								
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- /Main Wrapper -->
+		
+{% comment %} 		
+		<script>
+			$(document).ready(function() {
+				// jQuery Validation Plugin
+				$("#login-form").validate({
+					rules: {
+						username: "required",
+						password: "required"
+					},
+					messages: {
+						username: "Please enter your username",
+						password: "Please enter your password"
+					},
+					submitHandler: function(form) {
+						// AJAX request
+						$.ajax({
+							type: "POST",
+							url: "user_login",
+							data: $(form).serialize(), // Serialize the form data
+							success: function(response) {
+								// Handle success response
+								alert("you are loged in")
+								if (response.success === "1") {
+									Swal.fire({
+										icon: 'success',
+										title: 'Success',
+										text: response.message
+									});
+									// Redirect or show success message
+								} else {
+									// Display error message
+									Swal.fire({
+										icon: 'error',
+										title: 'Error',
+										text: response.message
+									});
+								}
+							},
+							error: function(xhr, status, error) {
+								// Handle error
+								console.error(xhr.responseText);
+							}
+						});
+					}
+				});
+			});
+		</script> {% endcomment %}
+		{% include 'allJS.html' %}
+    </body>
+	
+
+</html>

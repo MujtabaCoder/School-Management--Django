@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block title %}Edit Student{% endblock %}	
+{% block page_title %}EditStudent{% endblock %}
+{% block content %}
+					<!-- Page Header -->
+					{% comment %} <div class="page-header">
+						<div class="row align-items-center">
+							<div class="col-sm-12">
+								<div class="page-sub-header">
+									<h3 class="page-title">Edit Students</h3>
+									<ul class="breadcrumb">
+										<li class="breadcrumb-item"><a href="students.html">Student</a></li>
+										<li class="breadcrumb-item active">Edit Students</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header --> {% endcomment %}
+				
+					<div class="row">
+						<div class="col-sm-12">
+						
+							<div class="card comman-shadow">
+								<div class="card-body"> 
+									
+									<form id="updateForm" method="POST" action="edit_book" >
+										{% csrf_token %}
+										<div class="row">
+											<div class="col-12">
+												<h5 class="form-title student-info">Student Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+											</div>
+											<div class="col-12 col-sm-4">  
+												<div class="form-group local-forms">
+													<label > Boook Name <span class="login-danger">*</span></label>
+													<input class="form-control" type="text" value="{{ book.book_name }}"   >
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Language <span class="login-danger">*</span></label>
+													<input class="form-control" type="text" value="{{ book.language}}" >
+												</div>
+											</div>
+											
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms calendar-icon">
+													<label >Department  <span class="login-danger">*</span></label>
+													<input class="form-control datetimepicker" type="text"  placeholder="" value="{{ book.department}}"  >
+												</div>
+											</div>
+											
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Class <span class="login-danger">*</span></label>
+													<select class="form-control select"  >
+														<option>{{ book.student_class_id }}</option>
+														
+													  </select>
+												</div>
+											</div>
+											
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Status</label>
+													<input class="form-control" type="text" value="{{ book.status}}" >
+												</div>
+											</div>
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >Book Quantity </label>
+													<input class="form-control" type="text" value="{{ book.book_quantity }}" name="new_quantity" >
+												</div>
+											</div>
+											
+											<div class="col-12 col-sm-4">
+												<div class="form-group local-forms">
+													<label >book id </label>
+													<input class="form-control" type="hidden" value="{{ book.id }}" name="book_id">
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="student-submit">
+													<button type="submit" class="btn btn-primary" id="updateButton">Submit</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>							
+						</div>					
+					</div>					
+				</div>				
+			</div>
+			<!-- /Page Wrapper -->
+			
+        </div>
+		<!-- /Main Wrapper -->
+		{% comment %} <!-- Add this script tag in the head of your HTML file -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+		<script>
+			$(document).ready(function() {
+				$("#updateButton").click(function() {
+					// Get form data
+					var formData = $("#updateForm").serialize();
+			
+					// Send AJAX request
+					$.ajax({
+						type: "POST",
+						url: "{% url 'update_student' %}",
+						data: formData,
+						success: function(response) {
+							// Handle success response
+							console.log(""response);
+						},
+						error: function(error) {
+							// Handle error response
+							console.log(error);
+						}
+					});
+				});
+			});
+		</script>	
+		 {% endcomment %}
+{% endblock %}	

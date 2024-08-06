@@ -1,0 +1,62 @@
+<!-- students_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+    <!-- Include DataTables CSS and JS files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+</head>
+<body>
+
+    <h1>Student List</h1>
+
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>roll </th>
+                <th>religion</th>
+                <th>email</th>
+                <th>student_class</th>
+                <th>section</th>
+                <th>admission_id </th>
+                <th>phone</th>
+
+                <!-- Add more columns for other fields -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.first_name }}</td>
+                    <td>{{ student.last_name }}</td>
+                    <td>{{ student.gender }}</td>
+                    <td>{{ student.date_of_birth }}</td>
+                    <td>{{ student.roll  }}</td>
+                    <td>{{ student.religion }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.student_class }}</td>
+                    <td>{{ student.section}}</td>
+                    <td>{{ student.admission_id }}</td>
+                    <td>{{ student.phone }}</td>
+                    <!-- Add more columns for other fields -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        // DataTable initialization
+        $(document).ready( function () {
+            $('#studentTable').DataTable();
+        });
+    </script>
+
+</body>
+</html>

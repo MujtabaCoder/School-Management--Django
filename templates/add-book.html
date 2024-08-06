@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block title %}Add Book{% endblock %}	
+{% block page_title %}Add Book{% endblock %}
+{% block content %}
+
+
+<div class="card comman-shadow">
+	<div class="card-body">
+		<form id="addStudentForm" action='add_book' method="POST" >
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-12">
+					<h5 class="form-title student-info">Book Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+				</div>
+				<div class="col-12 col-sm-4">  
+					<div class="form-group local-forms">
+						<label >Book Name <span class="login-danger">*</span></label>
+						<input class="form-control" type="text" placeholder="Enter Book Name" name="book_name" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Language <span class="login-danger">*</span></label>
+						<input class="form-control" type="text" placeholder="Enter language" name="language" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms calendar-icon">
+						<label >Department  <span class="login-danger">*</span></label>
+						<input class="form-control datetimepicker" type="text"  placeholder="Enter Department"  name="department">
+					</div>
+				</div>
+				
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Status <span class="login-danger">*</span></label>
+						<input class="form-control" type="text" placeholder="Enter status" name="status" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Class <span class="login-danger">*</span></label>
+						<select class="form-control select" name="student_class">
+							<option value="">Please Select Class  </option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							</select>
+					</div>
+				</div>
+				
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Book quantity </label>
+						<input class="form-control" type="number" placeholder="Enter Book quantity"  name="book_quantity">
+					</div>
+				</div>
+				
+				
+				<div class="col-12">
+					<div class="student-submit">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>	
+{% comment %} <script>
+	$(document).ready(function () {
+	  $("#addStudentForm").submit(function (event) {
+		event.preventDefault(); // Prevent the default form submission
+		
+	
+		var formData = $(this).serialize();
+	
+		$.ajax({
+		  type: "POST",
+		  url: "/add_student/",
+		  data: formData,
+		  success: function (data) {
+			// Display SweetAlert for success
+			Swal.fire({
+			  icon: "success",
+			  title: "Success",
+			  text: "Successfully submitted student details!",
+			});
+	
+			// Additional actions after success, if needed
+		  },
+		  error: function (error) {
+			// Display SweetAlert for error
+			Swal.fire({
+			  icon: "error",
+			  title: "Error",
+			  text: error.responseText,
+			});
+	
+			// Additional actions after error, if needed
+		  },
+		});
+	  });
+	});
+	
+  </script> {% endcomment %}
+{% endblock %}	
+				
+					

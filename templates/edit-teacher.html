@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %}Edit Teacher{% endblock %}	
+{% block page_title %}Edit Teacher{% endblock %}
+{% block content %}
+<div class="card">
+	<div class="card-body">
+		<form action="update_teacher" method="POST">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-12">
+					<h5 class="form-title"><span>Basic Details</span></h5>
+				</div>
+				<div class="col-12 col-sm-4">  
+					<div class="form-group local-forms">
+						<label>Teacher ID <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" value="{{ teacher.teacher_id}}" name="teacher_id">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Name <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" value="{{teacher.name}}"
+						name="name">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Gender <span class="login-danger">*</span></label>
+						<select class="form-control select" name="gender">
+							<option>Select gender</option>
+							<option {% if teacher.gender == "Male" %}selected{% endif %}>Male</option>
+							<option {% if teacher.gender == "Female" %}selected{% endif %}>Female</option>
+							<option {% if teacher.gender == "Others" %}selected{% endif %}>Others</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms calendar-icon">
+						<label >Date Of Birth  <span class="login-danger">*</span></label>
+						<input class="form-control datetimepicker" type="text"  placeholder="29-04-2022"  value="{{teacher.date_of_birth}}"
+						name="date_of_birth">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Mobile <span class="login-danger">*</span></label>
+						<input type="text" class="form-control"  value="{{teacher.mobile}}"
+						name="mobile">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms calendar-icon">
+						<label>Joining Date <span class="login-danger">*</span></label>
+						<input class="form-control datetimepicker" type="text"  placeholder="29-04-2022"  value="{{teacher.joining_date}}"
+						name="joining_date">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Qualification <span class="login-danger">*</span></label>
+						<input class="form-control" type="text"  value="{{teacher.qualification}}" name="qualification">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Experience <span class="login-danger">*</span></label>
+						<input class="form-control" type="text"  value="{{teacher.experience}}"
+						name="experience">
+					</div>
+				</div>
+				<div class="col-12">
+					<h5 class="form-title"><span>Login Details</span></h5>
+				</div>
+				
+				
+				<div class="col-12">
+					<h5 class="form-title"><span>Address</span></h5>
+				</div>
+				<div class="col-12 ">  
+					<div class="form-group local-forms">
+					<label>Address <span class="login-danger">*</span></label>
+						<input type="text" class="form-control"  value="{{teacher.address}}"
+						name="address">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">  
+					<div class="form-group local-forms">
+						<label>City <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" value="{{teacher.city}}"
+						name="city">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">  
+					<div class="form-group local-forms">
+						<label>State <span class="login-danger">*</span></label>
+						<input type="text" class="form-control"  value="{{teacher.state}}"
+						name="state">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">  
+					<div class="form-group local-forms">
+						<label>Zip Code <span class="login-danger">*</span></label>
+						<input type="text" class="form-control"  value="{{teacher.zip_code}}"
+						name="zip_code">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">  
+					<div class="form-group local-forms">
+						<label>Country <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" value="{{teacher.name}}"
+						name="country">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Student id </label>
+						<input class="form-control" type="hidden" value="{{ teacher.id }}" name="teacherd_id">
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="student-submit">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+						
+{% endblock %}

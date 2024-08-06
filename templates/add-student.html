@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% block title %}Add Student{% endblock %}	
+{% block page_title %}Add Student{% endblock %}
+{% block content %}
+
+
+<div class="card comman-shadow">
+	<div class="card-body">
+		<form id="addStudentForm" action='add_student' method="POST" >
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-12">
+					<h5 class="form-title student-info">Student Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+				</div>
+				<div class="col-12 col-sm-4">  
+					<div class="form-group local-forms">
+						<label >First Name <span class="login-danger">*</span></label>
+						<input class="form-control" type="text" placeholder="Enter First Name" name="first_name" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Last Name <span class="login-danger">*</span></label>
+						<input class="form-control" type="text" placeholder="Enter Last Name" name="last_name" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Gender <span class="login-danger">*</span></label>
+						<select class="form-control select" name="gender">
+							<option value="">Select Gender</option>
+							<option value="Female">Female</option>
+							<option value="Male">Male</option>
+							<option value="Others">Others</option>
+							</select>
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms calendar-icon">
+						<label >Date Of Birth  <span class="login-danger">*</span></label>
+						<input class="form-control datetimepicker" type="date"  placeholder="DD-MM-YYYY"  name="date_of_birth">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Roll </label>
+						<input class="form-control" type="text" placeholder="Enter Roll Number" name="roll" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Blood Group <span class="login-danger">*</span></label>
+						<select class="form-control select" name="blood_group">
+							<option value="">Please Select Group </option>
+							<option value="B+">B+</option>
+							<option value="A+">A+</option>
+							<option value="O+">O+</option>
+							</select>
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Religion <span class="login-danger">*</span></label>
+						<select class="form-control select" name="religion">
+							<option value="">Please Select Religion  </option>
+							<option value="Hindu">Hindu</option>
+							<option value="Christian">Christian</option>
+							<option value="Others">Others</option>
+							</select>
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >E-Mail <span class="login-danger">*</span></label>
+						<input class="form-control" type="text" placeholder="Enter Email Address" name="email" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Class <span class="login-danger">*</span></label>
+						<select class="form-control select" name="student_class_id">
+							<option value="">Please Select Class  </option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							</select>
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Section <span class="login-danger">*</span></label>
+						<select class="form-control select" name="section">
+							<option value="">Please Select Section   </option>
+							<option value="B">B</option>
+							<option value="A">A</option>
+							<option value="C">C</option>
+							</select>
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Admission ID </label>
+						<input class="form-control" type="text" placeholder="Enter Admission ID"  name="admission_id">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Phone </label>
+						<input class="form-control" type="text" placeholder="Enter Phone Number"  name="phone">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group students-up-files">
+						<label>Upload Student Photo (150px X 150px)</label>
+						<div class="uplod">
+							<label class="file-upload image-upbtn mb-0">
+								Choose File <input type="file" name="photo">
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="student-submit">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>	
+{% comment %} <script>
+	$(document).ready(function () {
+	  $("#addStudentForm").submit(function (event) {
+		event.preventDefault(); // Prevent the default form submission
+		
+	
+		var formData = $(this).serialize();
+	
+		$.ajax({
+		  type: "POST",
+		  url: "/add_student/",
+		  data: formData,
+		  success: function (data) {
+			// Display SweetAlert for success
+			Swal.fire({
+			  icon: "success",
+			  title: "Success",
+			  text: "Successfully submitted student details!",
+			});
+	
+			// Additional actions after success, if needed
+		  },
+		  error: function (error) {
+			// Display SweetAlert for error
+			Swal.fire({
+			  icon: "error",
+			  title: "Error",
+			  text: error.responseText,
+			});
+	
+			// Additional actions after error, if needed
+		  },
+		});
+	  });
+	});
+	
+  </script> {% endcomment %}
+{% endblock %}	
+				
+					

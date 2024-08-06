@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}teacher {% endblock %}	
+{% block page_title %} Teacher List{% endblock %}
+{% block content %}
+			
+					<div class="row">
+						<div class="col-sm-12">
+						
+							<div class="card card-table comman-shadow">
+								<div class="card-body">
+								
+									<!-- Page Header -->
+									<div class="page-header">
+										<div class="row align-items-center">
+											<div class="col">
+												<h3 class="page-title">Teachers</h3>
+											</div>
+											<div class="col-auto text-end float-end ms-auto download-grp">
+												<a href="students.html" class="btn btn-outline-gray me-2 active"><i class="feather-list"></i></a>
+												<a href="students-grid.html" class="btn btn-outline-gray me-2"><i class="feather-grid"></i></a>
+												<a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i> Download</a>
+												<a href="add-student.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+											</div>
+										</div>
+									</div>
+									<!-- /Page Header -->
+									
+									<div class="table-responsive">
+										<table class="table border-0 star-student table-hover table-center mb-0 datatable table-striped display" id="teacherTable" >
+											<thead class="student-thread">
+												<tr>
+													<th>
+														<div class="form-check check-tables">
+															<input class="form-check-input" type="checkbox" value="something">
+														</div>
+													</th>
+                                                    <th> ID</th>
+													<th> Teacher ID</th>
+													<th>Name</th>
+													<th>gender</th>
+													<th>date_of_birth</th>
+													<th>Mobile Number</th>
+													<th>joining_date</th>
+													<th>qualification</th>
+													<th>Class</th>
+                                                    <th>country</th>
+													<th class="text-end">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for teacher in teachers %}
+												<tr>
+													<td>
+														<div class="form-check check-tables">
+															<input class="form-check-input" type="checkbox" value="{{ teacher.id }}">
+														</div>
+													</td>
+													<td>{{ teacher.id }}</td>
+													{% comment %} <td>
+														<h2 class="table-avatar">
+															 <a href="{% url 'students-student' student.id %}" class="avatar avatar-sm me-2">
+																<img class="avatar-img rounded-circle" src="{{ student.photo.url }}" alt="User Image">
+															</a> 
+															 <a href="{% url 'student-details' student.id %}">{{ student.first_name }} {{ student.last_name }}</a> 
+														</h2>
+													</td> {% endcomment %}
+													<td>{{ teacher.teacher_id }}</td>
+													<td>{{ teacher.name }}</td>
+													<td>{{ teacher.gender }}</td>
+													<td>{{ teacher.date_of_birth }}</td>
+													<td>{{ teacher.mobile }}</td>
+													<td>{{ teacher.joining_date }}</td> 
+                                                    <td>{{ teacher.qualification}}</td> 
+                                                    <td>{{ teacher.student_class_id}}</td>
+                                                    <td>{{ teacher.country}}</td> 
+                                                    
+
+													<td class="text-end">
+														<div class="actions ">
+															 <a href="teacher_profile?teacher_id={{ teacher.id }}" class="btn btn-sm bg-success-light me-2 ">
+																<i class="feather-eye"></i>
+															</a>
+															<a href="edit-teacher_page?teacher_id={{ teacher.id }}" class="btn btn-sm bg-danger-light">
+																<i class="feather-edit"></i> 
+															</a>
+														</div>
+													</td>
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+										
+									</div>
+								</div>
+							</div>							
+						</div>					
+					</div>					
+				</div>
+
+				<!-- Footer -->
+				<footer>
+					<p>COPYRIGHT © 2023 DREAMSTECHNOLOGIES.</p>					
+				</footer>
+				<!-- /Footer -->				
+			</div>
+			<!-- /Page Wrapper -->
+			
+        </div>
+		<!-- /Main Wrapper -->
+		 <script>
+        $(document).ready(function() {
+            $('#teacherTable').DataTable();
+			});
+		</script>
+		
+		{% endblock %}	

@@ -1,0 +1,42 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Class - {{class}}</h1>
+    <img src="{% static 'img/1129104.jpg' %}" height="100px" alt=""><br>
+    <span>Student 1st Index - {{students.0}}</span><br>
+    <span>Student length - {{students|length}}</span>
+    <table border="1" cellspacing="0">
+        <thead>
+            <tr style="background-color:rgb(204, 201, 201)">
+                <th>Student Name</th>
+                <th>Gender</th>
+                <th>Roll No</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stud in students %}
+                {% if stud.gender != "Female" %}
+                    <tr style="background-color:blueviolet">
+                        <td>{{stud.name}}</td>
+                        <td>{{stud.gender}}</td>
+                        <td>{{stud.roll_no}}</td>
+                    </tr>
+                {% else %}
+                    <tr style="background-color:pink">
+                        <td>{{stud.name}}</td>
+                        <td>{{stud.gender}}</td>
+                        <td>{{stud.roll_no}}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

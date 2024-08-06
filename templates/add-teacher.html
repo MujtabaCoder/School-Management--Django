@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block title %}Add Teacher{% endblock %}	
+{% block page_title %}Add Teacher{% endblock %}
+{% block content %}
+<div class="card">
+	<div class="card-body">
+		<form action='add-teacher'method="POST" >
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-12">
+					<h5 class="form-title"><span>Basic Details</span></h5>
+				</div>
+				<div class="col-12 col-sm-4">  
+					<div class="form-group local-forms">
+						<label>Teacher ID <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" placeholder="Teacher ID"
+						name="teacher_id">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Name <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" placeholder="Enter Name" name="name">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Gender <span class="login-danger">*</span></label>
+						<select class="form-control select" name="gender">
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Others">Others</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms calendar-icon">
+						<label >Date Of Birth  <span class="login-danger">*</span></label>
+						<input class="form-control datetimepicker" type="text"  placeholder="DD-MM-YYYY" name="date_of_birth" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Mobile <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" placeholder="Enter Phone" name="mobile">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms calendar-icon">
+						<label>Joining Date <span class="login-danger">*</span></label>
+						<input class="form-control datetimepicker" type="text"  placeholder="DD-MM-YYYY" name="joining_date" >
+					</div>
+				</div>
+				<div class="col-12 col-sm-4 local-forms">
+					<div class="form-group">
+						<label>Qualification <span class="login-danger">*</span></label>
+						<input class="form-control" type="text" placeholder="Enter qualification" name="qualification">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Experience <span class="login-danger">*</span></label>
+						<input class="form-control" type="text" placeholder="Enter Experience" name="experience">
+					</div>
+				</div>
+				<div class="col-12">
+					<h5 class="form-title"><span>Login Details</span></h5>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label >Class <span class="login-danger">*</span></label>
+						<select class="form-control select" name="student_class_id">
+							<option value="">Please Select Class  </option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							</select>
+					</div>
+				</div>
+			
+				
+				<div class="col-12">
+					<h5 class="form-title"><span>Address</span></h5>
+				</div>
+				<div class="col-12">
+					<div class="form-group local-forms">
+					<label>Address <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" placeholder="Enter address" name="address">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>City <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" placeholder="Enter City" name="city">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>State <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" placeholder="Enter State" name="state">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Zip Code <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" placeholder="Enter Zip" name="zip_code">
+					</div>
+				</div>
+				<div class="col-12 col-sm-4">
+					<div class="form-group local-forms">
+						<label>Country <span class="login-danger">*</span></label>
+						<input type="text" class="form-control" placeholder="Enter Country" name="country">
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="student-submit">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}	

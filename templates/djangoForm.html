@@ -1,0 +1,165 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Form</title>
+    <style>
+        .myclass{
+            background-color: rgb(200, 200, 202);
+        }
+        .bold{
+            font-size: 20px;
+            font-weight: bold;
+            color:rgb(90, 23, 23)
+        }
+    </style>
+    {% include 'allCSS.html' %}
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+
+    <!-- Include jQuery Validation Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+</head>
+<body>
+    <div class="card">
+        <form action="#" method="post">
+            {% csrf_token %}
+            <h1>Rendering form</h1>
+            {{form}}
+            <hr/>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+    
+    <!-- OR -->
+    <div class="card">
+        <form action="#" method="post">
+            {% csrf_token %}
+            <h1>Rendering form fields inside paragraph as_p</h1>
+            {{form.as_p}}
+            <hr/>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+    
+    <!-- OR -->
+    <div class="card">
+        <form action="#" method="post">
+            {% csrf_token %}
+            <h1>Rendering form field in for loop for alteration</h1>
+            {% for field in form %}
+                <div class="form-group local-forms">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <hr/>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+    
+    <!-- OR -->
+    <div class="card">
+        <form action="#" method="post" id="myForm">
+            {% csrf_token %}
+            <h2>Rendering form field without for loop for alteration as well as high UI flexibility</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group local-forms">
+                        <label for="{{ form.your_name.id_for_label }}">{{ form.your_name.label }} <span class="login-danger">*</span></label>
+                        {{ form.your_name }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group local-forms">
+                        <label for="{{ form.email.id_for_label }}">{{ form.email.label }} <span class="login-danger">*</span></label>
+                        {{ form.email }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group local-forms">
+                        <label for="{{ form.message.id_for_label }}">{{ form.message.label }} <span class="login-danger">*</span></label>
+                        {{ form.message }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"> 
+                    <label class="custom-label-class">Choices  <span class="login-danger">*</span></label>
+                    {% for radio in form.choice_field %} 
+                    <div class="">
+                        {{ radio.tag }}
+                        <label class="form-check-label" for="{{form.radio.tag.id_for_label}}">{{ radio.choice_label }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">  
+                    <label class="custom-label-class">Favorite Colors  <span class="login-danger">*</span></label>
+                    {% for chk in form.favorite_colors %}
+                    <div class="form-check">
+                        {{ chk.tag }}
+                        <label class="form-check-label" for="{{form.chk.id_for_label}}">{{ chk.choice_label }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="student-submit">
+                        <input type="submit" id="send" class="btn btn-primary" value="Submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</body>
+<script>
+    $(document).ready(function () {
+        $('#send').click(function (e) {
+            $("#myForm").validate({
+                rules: {
+                    your_name: {
+                        required: true,
+                        maxlength: 100,
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                    },
+                },
+                messages: {
+                    your_name: {
+                        required: "Please enter your name",
+                        maxlength: "Name must be at most 100 characters",
+                    },
+                    email: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address",
+                    },
+                },
+                submitHandler: function (form) {
+                    e.preventDefault();
+                    var id = 9;
+                    $.ajax({
+                        type: 'POST',
+                        url: 'django-form/'+id,  // Update with your view's URL
+                        data: $('#myForm').serialize(),
+                        success: function (data) {
+                            alert(data.message);  // Display success message
+                        },
+                        error: function (error) {
+                            console.log('Error:', error);
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+</html>

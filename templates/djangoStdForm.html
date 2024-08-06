@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Add Student{% endblock %}	
+{% block page_title %}Add Student{% endblock %}
+{% block content %}
+<div class="card comman-shadow">
+    <div class="card-body">
+        <form id="addStudentForm" action='/students/add_student/' method="POST" >
+            {% csrf_token %}
+            <div class="row">
+            {{ form }}
+            </div>
+
+            <div class="col-12">
+                <div class="student-submit">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}	
